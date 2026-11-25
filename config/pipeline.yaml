@@ -1,0 +1,23 @@
+seed: 42
+# Условный тариф для перевода ошибки из Гкал в рубли. Меняется без правки кода.
+tariff_rub_per_gcal: 2500
+db_path: data/housing.db
+model_dir: data/models
+snapshot_dir: data/snapshots
+# Доли уникальных дат: остаток уходит в отложенную выборку.
+train_fraction: 0.70
+valid_fraction: 0.15
+forecast_horizon: 7
+# Бюджет поиска: 8 конфигураций бустинга и 4 значения alpha гребневой регрессии.
+search_budget: 12
+stability_folds: 3
+indoor_balance_c: 18
+retrain:
+  psi_threshold: 0.25
+  psi_min_features: 2
+  mae_ratio_threshold: 1.3
+  rolling_days: 14
+  recent_days: 30
+promote:
+  # Новая версия сменяет рабочую, только если MAE на общем отложенном отрезке ниже хотя бы на 2%.
+  min_holdout_improvement: 0.02

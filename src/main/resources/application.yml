@@ -1,0 +1,27 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: contour
+  datasource:
+    url: jdbc:sqlite:data/housing.db?busy_timeout=8000
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      maximum-pool-size: 1
+      connection-init-sql: PRAGMA journal_mode=WAL
+  web:
+    resources:
+      cache:
+        period: 0s
+app:
+  python: .venv/bin/python
+  sources:
+    initial: data/sources/initial
+    delta: data/sources/delta
+  weather:
+    enabled: true
+    url: https://archive-api.open-meteo.com/v1/archive
+    latitude: 55.7558
+    longitude: 37.6173
+    timeout-seconds: 8
+    recent-days: 14
